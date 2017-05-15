@@ -1,0 +1,44 @@
+body {
+    background-image: url("taust.jpg");
+    background-size:cover;
+}
+#bg{
+   -webkit-filter: blur(20px);
+    -moz-filter: blur(15px);
+    -o-filter: blur(15px);
+    -ms-filter: blur(15px);
+    filter: blur(15px);
+    opacity: 0.85;
+    
+     position:absolute;
+     width:300px;
+     height:400px;
+     z-index:15;
+     top:50%;
+     left:50%;
+     margin:-200px 0 0 -150px;
+     background:white;
+}
+#area{
+position:absolute;
+     width:300px;
+     height:300px;
+     z-index:15;
+     top:50%;
+     left:50%;
+     margin:-150px 0 0 -150px;
+    text-align:center;
+    line-height: 150%;
+    font-family: 'Rockwell Extra Bold', 'Rockwell Bold', monospace;
+	font-size: 14px;
+	font-style: normal;
+	font-variant: small-caps;
+}
+#demo{
+	font-family: 'Rockwell Extra Bold', 'Rockwell Bold', monospace;
+	font-size: 20px;
+	font-style: normal;
+	font-variant: small-caps;
+	font-weight: bold;
+	line-height: 10px;
+}
