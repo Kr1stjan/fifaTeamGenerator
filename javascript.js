@@ -10,11 +10,10 @@ var fourhalf = ['Everton', 'Liverpool','Spurs','Stoke','Athletic Bilbao','Atleti
 var five = ['Arsenal','Chelsea','Man City','Man Utd','FC Barcelona','Real Madrid'];
 var shufflearray = [];
 var valikud = [];
-//argentina, austria, austraalia, belgia, inglismaa, hispaania
 function shuffle(){
     while(shufflearray.length > 0) {
     shufflearray.pop();
-    } //k6ige kiirem viis array tyhendamiseks
+    }
     if($("#option1").is(':checked')) {
     shufflearray.push.apply(shufflearray, half);}
     if($("#option2").is(':checked')) {
@@ -35,9 +34,7 @@ function shuffle(){
         shufflearray.push.apply(shufflearray, fourhalf); }
     if($("#option10").is(':checked')) {
         shufflearray.push.apply(shufflearray, five); }
-    //shufflearray = _.shuffle(shufflearray);
     var randomnumber = Math.floor((Math.random() * shufflearray.length));
-    //shufflearray.toString();
     var randomteam = shufflearray[randomnumber];
     randomteam.toString();
     document.getElementById("demo").innerHTML = randomteam;
