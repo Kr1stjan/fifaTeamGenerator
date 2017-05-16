@@ -1,0 +1,27 @@
+{
+  "name": "Fifa random team generator",
+  "homepage": "https://github.com/Kr1stjan/fifaTeamGenerator",
+  "authors": [
+    "Kristjan Jürisoo"
+  ],
+  "description": "Fifa random team generator",
+  "main": "index.html",
+  "keywords": [
+    "Fifa",
+    "random",
+    "team",
+    "generator"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.2.1"
+  }
+}
