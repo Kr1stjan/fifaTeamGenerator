@@ -1,5 +1,5 @@
-# Fifa15 Random Team Generator
-This generator generates a random Fifa 15 team based on selected star values. It still lacks teams.
+# Fifa18 Random Team Generator
+This generator generates a random Fifa 18 team based on selected star values. It uses a public API to always get teams with the latest squad updates.
 
 ## Usage
 ```bash
@@ -10,8 +10,6 @@ $ npm install -g bower
 $ bower install
 ```
 #### TODO
-* Take it to FIFA 17
-* Team lists to file
 * Minify background
 * Make it more beautiful
 * Add tests
