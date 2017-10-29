@@ -1,41 +1,65 @@
-var half = ['pool1', 'pool2'];
-var one = ['yks1', 'yks2'];
-var onehalf = ['Perth Glory', 'Admira','SCR Altach','SV Grödig','Wiener Neustadt'];
-var two = ['Adelaide United','Brisbane Roar','Central Coast','Melbourne Victory','Newcastle Jets','Sydney FC','Well. Pheonix','WS Wanderers','SV Ried','Wolfsberger AC'];
-var twohalf = ['Bahia Blanca','Fl. Varela','G. La Plata','Godoy Cruz','Quilmes','Rafaela','Melbourne City','SK Rapid Wien','SK Sturm Graz','Cercle Brugge','KV Oostende','KVC Westerlo','Lierse SK','Royal Mouscron'];
-var three = ['Banfield', 'Belgrano','Estudiantes','Independiente','Rosario Ctral','Tigre','Velez Sarsfield','FK Austria','KAA Gent','KV Kortrijk','KV Mechelen','Sp. Charleroi','Sport Lokeren','Waasl.-Beveren','Zulte Waregem'];
-var threehalf = ['Boca Juniors', 'Lanus','Newells','Racing Club','River Plate','San Lorenzo','Sarandi','RB Salzburg','Club Brugge','KRC Genk','Anderlecht','Standard Liege','Burnley','Crystal Palace','Hull City','Leicester City','Celta Vigo','Cordoba','Elche','Getafe', 'Granada', 'RC Deportivo','RCD Espanyol','SD Eibar','UD Almeria'];
-var four = ['Aston Villa','Newcastle','QPR','Southampton','Sunderland','Swansea','West Brom','West Ham','Levante','Malaga','Rayo Vallecano','Villareal'];
-var fourhalf = ['Everton', 'Liverpool','Spurs','Stoke','Athletic Bilbao','Atletico Madrid','Real Sociedad','Sevilla','Valencia'];
-var five = ['Arsenal','Chelsea','Man City','Man Utd','FC Barcelona','Real Madrid'];
-var shufflearray = [];
-var valikud = [];
+var teamsForShuffle = [];
+var randomNumber;
+var randomTeam;
 function shuffle(){
-    while(shufflearray.length > 0) {
-    shufflearray.pop();
+    var teams = [];
+    var requests = Array();
+    while(teamsForShuffle.length > 0) {
+    teamsForShuffle.pop();
     }
     if($("#option1").is(':checked')) {
-    shufflearray.push.apply(shufflearray, half);}
+        requests.push($.get(getUrl(1,59)));}
+    
     if($("#option2").is(':checked')) {
-       shufflearray.push.apply(shufflearray, one);}
+        requests.push($.get(getUrl(60,62)));}
+    
     if($("#option3").is(':checked')) {
-        shufflearray.push.apply(shufflearray, onehalf); }
+        requests.push($.get(getUrl(63,64))); }
+    
     if($("#option4").is(':checked')) {
-        shufflearray.push.apply(shufflearray, two); }
+        requests.push($.get(getUrl(65,66))); }
+
     if($("#option5").is(':checked')) {
-        shufflearray.push.apply(shufflearray, twohalf); }
+        requests.push($.get(getUrl(67,68)));}
+    
     if($("#option6").is(':checked')) {
-        shufflearray.push.apply(shufflearray, three); }
+        requests.push($.get(getUrl(69,70))); }
+    
     if($("#option7").is(':checked')) {
-        shufflearray.push.apply(shufflearray, threehalf); }
+        requests.push($.get(getUrl(71,74))); }
+    
     if($("#option8").is(':checked')) {
-        shufflearray.push.apply(shufflearray, four); }
+        requests.push($.get(getUrl(75,78))); }
+    
     if($("#option9").is(':checked')) {
-        shufflearray.push.apply(shufflearray, fourhalf); }
+        requests.push($.get(getUrl(79,82))); }
+    
     if($("#option10").is(':checked')) {
-        shufflearray.push.apply(shufflearray, five); }
-    var randomnumber = Math.floor((Math.random() * shufflearray.length));
-    var randomteam = shufflearray[randomnumber];
-    randomteam.toString();
-    document.getElementById("demo").innerHTML = randomteam;
+        requests.push($.get(getUrl(83,99)));   
+    }
+
+    var defer = $.when.apply($, requests);
+    defer.done(function(response){
+        // This is executed only after every ajax request has been completed
+        if (requests.length == 1)
+            $.each(response.filteredTeams, function( index, team ) {
+                teamsForShuffle.push(team.name);
+            });
+        else
+            $.each(arguments, function(index, responseData){
+                $.each(responseData[0].filteredTeams, function( index, team ) {
+                    teamsForShuffle.push(team.name);
+                });
+            });
+        // Get data here
+        alert(teamsForShuffle.length);
+        randomNumber = Math.floor((Math.random() * teamsForShuffle.length));
+        randomTeam = teamsForShuffle[randomNumber];
+        randomTeam.toString();
+        document.getElementById("message").innerHTML = randomTeam;
+    });
+}
+
+function getUrl(minRating, maxRating){
+    return 'http://api.falcon.ee/teams?min_rating=' + minRating + '&max_rating=' + maxRating;
 }
